@@ -1,0 +1,53 @@
+<view bindtouchend="endPress" bindtouchcancel="endPress">
+<view class="top-bar between">
+  <view class="btn-primary mini" bindtap="startAdd">+ 新增商品</view>
+  <text class="muted">按住 ＋ / － 可连续增减</text>
+</view>
+
+<view wx:for="{{list}}" wx:key="_id" class="card">
+  <view class="between">
+    <view>
+      <view>{{item.name}} <text wx:if="{{!item.onSale}}" class="tag tag-gray">已下架</text></view>
+      <view class="muted">￥{{item.priceText}} · {{item.category}} · 已售 {{item.soldCount || 0}}</view>
+    </view>
+    <view class="btn-plain mini" bindtap="startEdit" data-g="{{item}}">编辑</view>
+  </view>
+  <view class="between" style="margin-top: 16rpx;">
+    <view class="row">
+      <text class="muted" style="margin-right: 16rpx;">库存</text>
+      <view class="step-btn" bindtap="adjust" bindlongpress="startPress"
+            data-id="{{item._id}}" data-d="-1">－</view>
+      <text class="qty" bindtap="editStock" data-id="{{item._id}}">{{item.stock}}</text>
+      <view class="step-btn" bindtap="adjust" bindlongpress="startPress"
+            data-id="{{item._id}}" data-d="1">＋</view>
+      <view class="step-btn" bindtap="adjust" bindlongpress="startPress"
+            data-id="{{item._id}}" data-d="10">＋10</view>
+    </view>
+    <view class="btn-plain mini" bindtap="toggle" data-id="{{item._id}}" data-onsale="{{item.onSale}}">{{item.onSale ? '下架' : '上架'}}</view>
+  </view>
+</view>
+<view wx:if="{{!list.length}}" class="empty">还没有商品，点上方按钮新增</view>
+</view>
+
+<view wx:if="{{editing}}" class="modal-mask">
+  <view class="modal">
+    <view class="modal-title">{{form.id ? '编辑商品' : '新增商品'}}</view>
+    <view class="field"><text class="label">名称</text>
+      <input data-k="name" value="{{form.name}}" bindinput="onFormInput" placeholder="如：红烧牛肉面" /></view>
+    <view class="field"><text class="label">价格(元)</text>
+      <input data-k="priceYuan" type="digit" value="{{form.priceYuan}}" bindinput="onFormInput" placeholder="如：4.5" /></view>
+    <view class="field"><text class="label">库存</text>
+      <input data-k="stock" type="number" value="{{form.stock}}" bindinput="onFormInput" placeholder="如：20" /></view>
+    <view class="field"><text class="label">分类</text>
+      <input data-k="category" value="{{form.category}}" bindinput="onFormInput" placeholder="如：泡面" /></view>
+    <view class="field">
+      <text class="label">图片</text>
+      <view class="btn-plain mini" bindtap="chooseImage">{{form.image ? '重新上传' : '上传图片'}}</view>
+      <image wx:if="{{form.image}}" class="preview" src="{{form.image}}" mode="aspectFill" />
+    </view>
+    <view class="row" style="gap: 24rpx; margin-top: 24rpx;">
+      <view class="btn-plain mini" bindtap="cancelEdit">取消</view>
+      <view class="btn-primary mini" bindtap="save">保存</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,5 @@
+.sec-title { font-weight: 500; margin-bottom: 20rpx; }
+.status { font-size: 34rpx; font-weight: 500; color: #07c160; }
+.line { padding: 10rpx 0; }
+.total { border-top: 1rpx solid #f2f2f2; margin-top: 12rpx; padding-top: 20rpx; font-weight: 500; }
+.op { margin-top: 20rpx; }

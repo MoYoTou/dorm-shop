@@ -1,0 +1,15 @@
+page { background: #f6f6f6; font-size: 28rpx; color: #333; }
+.card { background: #fff; border-radius: 16rpx; padding: 24rpx; margin: 20rpx; }
+.row { display: flex; align-items: center; }
+.between { display: flex; align-items: center; justify-content: space-between; }
+.price { color: #e64340; font-weight: 600; }
+.muted { color: #999; font-size: 24rpx; }
+.btn-primary { background: #07c160; color: #fff; border-radius: 44rpx; text-align: center; padding: 20rpx 0; font-size: 30rpx; }
+.btn-plain { border: 1rpx solid #07c160; color: #07c160; border-radius: 44rpx; text-align: center; padding: 16rpx 32rpx; font-size: 26rpx; background: #fff; }
+.btn-danger { background: #e64340; color: #fff; border-radius: 44rpx; text-align: center; padding: 20rpx 0; font-size: 30rpx; }
+.tag { display: inline-block; font-size: 22rpx; padding: 4rpx 16rpx; border-radius: 8rpx; }
+.tag-green { background: #e8f8f0; color: #07c160; }
+.tag-orange { background: #fff3e8; color: #ff8c1a; }
+.tag-red { background: #fdecec; color: #e64340; }
+.tag-gray { background: #f2f2f2; color: #999; }
+.empty { text-align: center; color: #999; padding: 120rpx 0; font-size: 26rpx; }

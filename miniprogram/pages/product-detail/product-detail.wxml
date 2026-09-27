@@ -1,0 +1,27 @@
+<view wx:if="{{g}}" bindtouchend="endPress" bindtouchcancel="endPress">
+  <image wx:if="{{g.image}}" class="hero" src="{{g.image}}" mode="aspectFill" />
+  <view wx:else class="hero placeholder">商品图</view>
+
+  <view class="card">
+    <view class="name">{{g.name}}</view>
+    <view class="muted">{{g.category}} · 已售 {{g.soldCount || 0}}</view>
+    <view class="between" style="margin-top: 16rpx;">
+      <text class="price big">￥{{priceText}}</text>
+      <text class="tag {{g.stock > 0 ? 'tag-green' : 'tag-red'}}">{{g.stock > 0 ? '库存 ' + g.stock + ' 件' : '已售罄'}}</text>
+    </view>
+  </view>
+
+  <view class="card between">
+    <text>购买数量</text>
+    <view class="stepper">
+      <view class="step-btn" bindtap="changeQty" bindlongpress="startPress" data-d="-1">－</view>
+      <text class="qty">{{qty}}</text>
+      <view class="step-btn" bindtap="changeQty" bindlongpress="startPress" data-d="1">＋</view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="btn-plain" bindtap="addToCart">加入购物车</view>
+    <view class="btn-primary buy {{g.stock <= 0 ? 'disabled' : ''}}" bindtap="buyNow">立即购买</view>
+  </view>
+</view>

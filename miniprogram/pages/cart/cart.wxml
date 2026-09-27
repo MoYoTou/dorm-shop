@@ -1,0 +1,23 @@
+<view wx:if="{{cart.length}}">
+  <view wx:for="{{cart}}" wx:key="goodsId" class="card between">
+    <view>
+      <view>{{item.name}}</view>
+      <view class="price">￥{{item.priceText}}</view>
+    </view>
+    <view class="row">
+      <view class="step-btn" bindtap="changeQty" data-id="{{item.goodsId}}" data-d="-1">－</view>
+      <text class="qty">{{item.qty}}</text>
+      <view class="step-btn" bindtap="changeQty" data-id="{{item.goodsId}}" data-d="1">＋</view>
+      <view class="del" bindtap="removeItem" data-id="{{item.goodsId}}">删除</view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view>合计：<text class="price big">￥{{totalText}}</text></view>
+    <view class="btn-primary checkout" bindtap="checkout">去结算</view>
+  </view>
+</view>
+<view wx:else class="empty">
+  <view>购物车空空如也</view>
+  <view class="btn-plain go" bindtap="goShopping">去逛逛</view>
+</view>

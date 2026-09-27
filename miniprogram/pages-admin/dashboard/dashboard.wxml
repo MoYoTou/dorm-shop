@@ -1,0 +1,43 @@
+<view wx:if="{{isAdmin}}">
+  <view class="grid">
+    <view class="cell card">
+      <view class="num">{{stats.todayCount}}</view>
+      <view class="muted">今日订单</view>
+    </view>
+    <view class="cell card">
+      <view class="num">￥{{todayAmountText}}</view>
+      <view class="muted">今日营业额</view>
+    </view>
+    <view class="cell card">
+      <view class="num warn">{{stats.pendingCount}}</view>
+      <view class="muted">待接单</view>
+    </view>
+    <view class="cell card">
+      <view class="num danger">{{stats.refundPendingCount}}</view>
+      <view class="muted">待审批退款</view>
+    </view>
+  </view>
+
+  <view class="card entry" bindtap="go" data-url="/pages-admin/orders/orders">
+    <view>
+      <view class="entry-title">订单管理</view>
+      <view class="muted">接单 / 配送 / 退款审批 / 一键退款</view>
+    </view>
+    <text class="arrow">〉</text>
+  </view>
+  <view class="card entry" bindtap="go" data-url="/pages-admin/goods/goods">
+    <view>
+      <view class="entry-title">商品与库存</view>
+      <view class="muted">上下架 / 库存盘点 / 新增商品</view>
+    </view>
+    <text class="arrow">〉</text>
+  </view>
+  <view class="card entry" bindtap="go" data-url="/pages-admin/settings/settings">
+    <view>
+      <view class="entry-title">营业设置</view>
+      <view class="muted">营业时间 / 配送费 / 联系方式 / 收款模式</view>
+    </view>
+    <text class="arrow">〉</text>
+  </view>
+</view>
+<view wx:else class="empty">你不是管理员，无法查看此页</view>

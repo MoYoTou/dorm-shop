@@ -1,0 +1,13 @@
+.top-bar { padding: 20rpx; }
+.mini { padding: 12rpx 28rpx; font-size: 24rpx; }
+.step-btn { min-width: 64rpx; padding: 14rpx 20rpx; margin-right: 12rpx; border-radius: 12rpx; background: #f2f2f2; font-size: 28rpx; text-align: center; line-height: 1.2; }
+.step-btn:active { background: #dcdcdc; }
+.qty { display: inline-block; min-width: 72rpx; margin: 0 16rpx; padding: 6rpx 0; font-size: 36rpx; font-weight: 500; text-align: center; border-bottom: 2rpx dashed #bbb; }
+.qty:active { color: #07c160; border-bottom-color: #07c160; }
+.modal-mask { position: fixed; inset: 0; background: rgba(0,0,0,.5); display: flex; align-items: center; justify-content: center; z-index: 99; }
+.modal { width: 640rpx; background: #fff; border-radius: 16rpx; padding: 32rpx; }
+.modal-title { font-weight: 500; margin-bottom: 20rpx; }
+.field { display: flex; align-items: center; padding: 16rpx 0; border-bottom: 1rpx solid #f2f2f2; }
+.label { width: 140rpx; color: #666; }
+.field input { flex: 1; }
+.preview { width: 100rpx; height: 100rpx; border-radius: 12rpx; margin-left: 20rpx; }

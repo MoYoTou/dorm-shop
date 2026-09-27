@@ -1,0 +1,52 @@
+<view wx:if="{{refunds.length}}" class="refund-section">
+  <view class="refund-title">待审批退款（{{refunds.length}}）</view>
+  <view wx:for="{{refunds}}" wx:for-item="f" wx:key="_id" class="card refund-card">
+    <view class="between">
+      <text>{{f.orderNo}}</text>
+      <text class="price">￥{{f.amountText}}</text>
+    </view>
+    <view class="muted" style="margin: 8rpx 0;">{{f.timeText}} · 原因：{{f.reason}}</view>
+    <view class="row" style="gap: 24rpx; margin-top: 12rpx;">
+      <view class="btn-primary mini" bindtap="approve" data-id="{{f._id}}">同意退款</view>
+      <view class="btn-plain mini" bindtap="showReject" data-id="{{f._id}}">拒绝</view>
+    </view>
+  </view>
+</view>
+
+<scroll-view scroll-x class="tabs" enhanced show-scrollbar="{{false}}">
+  <view wx:for="{{tabs}}" wx:key="k"
+        class="tab {{active === item.k ? 'active' : ''}}"
+        bindtap="switchTab" data-k="{{item.k}}">{{item.t}}</view>
+</scroll-view>
+
+<view wx:for="{{list}}" wx:key="_id" class="card">
+  <view class="between">
+    <text class="muted">{{item.orderNo}}{{item.orderType === 'booking' ? ' · 预定单' : ''}}</text>
+    <text class="tag tag-orange">{{item.statusText}}</text>
+  </view>
+  <view class="summary">{{item.summary}}</view>
+  <view class="muted">送到：{{item.dormBuilding}} {{item.room}} · {{item.phone}}</view>
+  <view wx:if="{{item.remark}}" class="muted">备注：{{item.remark}}</view>
+  <view wx:if="{{item.deliveryTime}}" class="muted">预定配送：{{item.deliveryTime}}</view>
+  <view class="between" style="margin-top: 12rpx;">
+    <text class="price">￥{{item.totalText}}<text class="muted" style="font-weight: 400;">（{{item.payMode === 'online' ? '在线支付' : '货到付款'}}）</text></text>
+  </view>
+  <view class="row ops">
+    <view wx:if="{{nextText[item.status]}}" class="btn-primary mini" bindtap="advance" data-id="{{item._id}}">{{nextText[item.status]}}</view>
+    <view class="btn-plain mini" bindtap="callUser" data-phone="{{item.phone}}">联系顾客</view>
+    <view wx:if="{{item.status !== 'completed' && item.status !== 'cancelled' && item.status !== 'refunded'}}"
+          class="btn-danger mini" bindtap="merchantRefund" data-id="{{item._id}}">直接退款</view>
+  </view>
+</view>
+<view wx:if="{{!list.length}}" class="empty">暂无订单</view>
+
+<view wx:if="{{rejectId}}" class="modal-mask">
+  <view class="modal">
+    <view class="modal-title">拒绝退款</view>
+    <textarea value="{{rejectNote}}" placeholder="请填写拒绝理由，顾客可见（必填）" bindinput="onRejectInput" />
+    <view class="row" style="gap: 24rpx; margin-top: 24rpx;">
+      <view class="btn-plain mini" bindtap="cancelReject">取消</view>
+      <view class="btn-danger mini" bindtap="confirmReject">确认拒绝</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,8 @@
+.grid { display: flex; flex-wrap: wrap; }
+.cell { width: calc(50% - 60rpx); text-align: center; }
+.num { font-size: 44rpx; font-weight: 500; }
+.num.warn { color: #ff8c1a; }
+.num.danger { color: #e64340; }
+.entry { display: flex; align-items: center; justify-content: space-between; }
+.entry-title { font-size: 30rpx; font-weight: 500; margin-bottom: 8rpx; }
+.arrow { color: #ccc; font-size: 32rpx; }

@@ -1,0 +1,47 @@
+<view wx:if="{{o}}">
+  <view class="card">
+    <view class="between">
+      <text class="status">{{o.statusText}}</text>
+      <text wx:if="{{o.refundText}}" class="tag {{o.refundStatus === 'refunded' ? 'tag-gray' : o.refundStatus === 'rejected' ? 'tag-red' : 'tag-orange'}}">{{o.refundText}}</text>
+    </view>
+    <view class="muted" style="margin-top: 12rpx;">
+      {{o.orderNo}} · {{o.timeText}} · {{o.payMode === 'online' ? '在线支付' : '货到付款'}}{{o.orderType === 'booking' ? ' · 预定单' : ''}}
+    </view>
+    <view wx:if="{{o.deliveryTimeText}}" class="muted" style="margin-top: 8rpx;">预定配送：{{o.deliveryTimeText}}</view>
+  </view>
+
+  <view class="card">
+    <view class="sec-title">商品明细</view>
+    <view wx:for="{{o.items}}" wx:key="goodsId" class="between line">
+      <text>{{item.name}} × {{item.qty}}</text>
+      <text class="price">￥{{item.priceText}}</text>
+    </view>
+    <view class="between line"><text class="muted">商品金额</text><text>￥{{o.goodsAmountText}}</text></view>
+    <view class="between line"><text class="muted">配送费</text><text>￥{{o.deliveryFeeText}}</text></view>
+    <view class="between line total"><text>实付</text><text class="price">￥{{o.totalText}}</text></view>
+  </view>
+
+  <view class="card">
+    <view class="sec-title">配送信息</view>
+    <view class="line">{{o.dormBuilding}} {{o.room}} · {{o.phone}}</view>
+    <view wx:if="{{o.remark}}" class="muted line">备注：{{o.remark}}</view>
+  </view>
+
+  <view class="card">
+    <view class="sec-title">联系商家</view>
+    <view class="row" style="gap: 24rpx;">
+      <view class="btn-plain" bindtap="callMerchant">拨打电话</view>
+      <view class="btn-plain" bindtap="copyWechat">复制微信号</view>
+    </view>
+  </view>
+
+  <view class="card" wx:if="{{o.status === 'unpaid' || o.status === 'pending_accept' || o.status === 'preparing'}}">
+    <view class="sec-title">订单操作</view>
+    <view wx:if="{{o.status === 'unpaid'}}" class="btn-primary op" bindtap="payNow">去支付</view>
+    <view wx:if="{{o.status === 'unpaid' || o.status === 'pending_accept'}}" class="btn-plain op" bindtap="cancelOrder">取消订单</view>
+    <view wx:if="{{(o.status === 'pending_accept' || o.status === 'preparing') && o.refundStatus === 'none'}}"
+          class="btn-danger op" bindtap="goRefund">申请退款</view>
+    <view wx:if="{{o.refundStatus === 'pending'}}" class="muted op">退款审核中，请耐心等待商家处理</view>
+    <view wx:if="{{o.refundStatus === 'rejected'}}" class="muted op">退款被拒绝，如有疑问请联系商家</view>
+  </view>
+</view>

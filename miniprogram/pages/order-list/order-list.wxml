@@ -1,0 +1,18 @@
+<scroll-view scroll-x class="tabs" enhanced show-scrollbar="{{false}}">
+  <view wx:for="{{tabs}}" wx:key="k"
+        class="tab {{active === item.k ? 'active' : ''}}"
+        bindtap="switchTab" data-k="{{item.k}}">{{item.t}}</view>
+</scroll-view>
+
+<view wx:for="{{list}}" wx:key="_id" class="card" bindtap="goDetail" data-id="{{item._id}}">
+  <view class="between">
+    <text class="muted">{{item.orderNo}}</text>
+    <text class="tag {{item.status === 'completed' ? 'tag-green' : item.status === 'cancelled' || item.status === 'refunded' ? 'tag-gray' : 'tag-orange'}}">{{item.statusText}}</text>
+  </view>
+  <view class="summary">{{item.summary}}</view>
+  <view class="between">
+    <text class="muted">{{item.timeText}}{{item.orderType === 'booking' ? ' · 预定单' : ''}}</text>
+    <text class="price">￥{{item.totalText}}</text>
+  </view>
+</view>
+<view wx:if="{{!list.length}}" class="empty">还没有订单，去首页逛逛吧</view>

@@ -1,0 +1,15 @@
+.sec-title { font-weight: 500; margin-bottom: 20rpx; }
+.field { display: flex; align-items: center; padding: 16rpx 0; border-bottom: 1rpx solid #f2f2f2; }
+.field:last-child { border-bottom: none; }
+.label { width: 140rpx; color: #666; }
+.field input { flex: 1; }
+.type-row { gap: 24rpx; }
+.type { flex: 1; text-align: center; padding: 20rpx 0; border: 1rpx solid #ddd; border-radius: 12rpx; }
+.type.active { border-color: #07c160; color: #07c160; background: #e8f8f0; }
+.type.disabled { color: #bbb; background: #f7f7f7; }
+.slot { margin-top: 20rpx; padding: 20rpx; background: #f7f7f7; border-radius: 12rpx; }
+.line { padding: 12rpx 0; }
+.total { border-top: 1rpx solid #f2f2f2; margin-top: 12rpx; padding-top: 20rpx; font-weight: 500; }
+textarea { width: 100%; height: 120rpx; background: #f7f7f7; border-radius: 12rpx; padding: 16rpx; box-sizing: border-box; }
+.footer { position: fixed; left: 0; right: 0; bottom: 0; padding: 20rpx 30rpx calc(20rpx + env(safe-area-inset-bottom)); background: #fff; }
+page { padding-bottom: 160rpx; }

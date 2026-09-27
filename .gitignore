@@ -1,0 +1,14 @@
+# 微信开发者工具私有配置（本机 IDE 偏好，不入库）
+project.private.config.json
+
+# 依赖
+node_modules/
+cloudfunctions/*/node_modules/
+cloudfunctions/*/package-lock.json
+
+# 系统 / 编辑器
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/

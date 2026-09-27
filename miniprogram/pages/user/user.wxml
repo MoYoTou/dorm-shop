@@ -1,0 +1,37 @@
+<view class="card profile">
+  <view class="avatar">客</view>
+  <view>
+    <view class="nick">微信用户 {{openidShort}}</view>
+    <view class="muted">{{isAdmin ? '商家管理员' : '顾客'}}</view>
+  </view>
+</view>
+
+<view class="card">
+  <view class="sec-title">联系商家</view>
+  <view class="row contact-row">
+    <view class="btn-plain" bindtap="callMerchant">拨打电话</view>
+    <view class="btn-plain" bindtap="copyWechat">复制微信号</view>
+  </view>
+  <view wx:if="{{settings && settings.businessHours && settings.businessHours.length}}" class="muted" style="margin-top: 16rpx;">
+    营业时间：{{settings.businessHours[0].start}} - {{settings.businessHours[0].end}}
+  </view>
+</view>
+
+<view class="card" wx:if="{{isAdmin}}">
+  <view class="sec-title">商家管理</view>
+  <view class="btn-primary" bindtap="goAdmin">进入管理后台</view>
+</view>
+
+<view class="card">
+  <view class="sec-title">初始化与管理员</view>
+  <view class="muted" style="margin-bottom: 16rpx;">
+    首次部署、或需要把当前微信设为商家管理员时点下方按钮。重复执行是安全的，不会重复生成商品。
+  </view>
+  <view wx:if="{{!cloudOk}}" class="cloud-warn">
+    云端未连接，请依次检查：① 已开通云开发环境 ② miniprogram/app.js 里已填写环境 ID ③ 7 个云函数已全部上传部署
+  </view>
+  <view class="btn-primary" bindtap="initData">初始化数据</view>
+  <view wx:if="{{isAdmin}}" class="btn-plain reset-btn" bindtap="resetGoods">重置商品数据（修复异常）</view>
+</view>
+
+<view class="muted version">dorm-store · 云开发版</view>

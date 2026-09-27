@@ -1,0 +1,43 @@
+<view class="card">
+  <view class="sec-title">配送信息（送到宿舍门口）</view>
+  <view class="field"><text class="label">宿舍楼</text>
+    <input data-k="dormBuilding" value="{{dormBuilding}}" placeholder="如：3号楼" bindinput="onInput" /></view>
+  <view class="field"><text class="label">宿舍号</text>
+    <input data-k="room" value="{{room}}" placeholder="如：507" bindinput="onInput" /></view>
+  <view class="field"><text class="label">手机号</text>
+    <input data-k="phone" type="number" value="{{phone}}" placeholder="配送时联系你" bindinput="onInput" /></view>
+</view>
+
+<view class="card">
+  <view class="sec-title">配送方式</view>
+  <view class="row type-row">
+    <view class="type {{orderType === 'now' ? 'active' : ''}} {{!canNow ? 'disabled' : ''}}"
+          bindtap="switchType" data-t="now">立即送{{!canNow ? '（休息中）' : ''}}</view>
+    <view class="type {{orderType === 'booking' ? 'active' : ''}}"
+          bindtap="switchType" data-t="booking">预定单</view>
+  </view>
+  <picker wx:if="{{orderType === 'booking'}}" mode="selector" range="{{slots}}" range-key="label"
+          value="{{slotIndex}}" bindchange="pickSlot">
+    <view class="slot">配送时间：{{slots.length ? slots[slotIndex].label : '暂无可选时段'}} 〉</view>
+  </picker>
+</view>
+
+<view class="card">
+  <view class="sec-title">商品清单</view>
+  <view wx:for="{{items}}" wx:key="goodsId" class="between line">
+    <text>{{item.name}} × {{item.qty}}</text>
+    <text class="price">￥{{item.priceText}}</text>
+  </view>
+  <view class="between line"><text class="muted">商品金额</text><text>￥{{goodsAmountText}}</text></view>
+  <view class="between line"><text class="muted">配送费</text><text>￥{{deliveryFeeText}}</text></view>
+  <view class="between line total"><text>合计（{{payModeText}}）</text><text class="price">￥{{totalText}}</text></view>
+</view>
+
+<view class="card">
+  <view class="sec-title">备注</view>
+  <textarea data-k="remark" value="{{remark}}" placeholder="口味偏好、放门口等（选填）" bindinput="onInput" />
+</view>
+
+<view class="footer">
+  <view class="btn-primary" bindtap="submit">提交订单 ￥{{totalText}}</view>
+</view>

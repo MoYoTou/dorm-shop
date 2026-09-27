@@ -1,0 +1,18 @@
+.banner { display: flex; align-items: center; padding: 20rpx 30rpx; font-size: 26rpx; }
+.banner.open { background: #e8f8f0; color: #07c160; }
+.banner.closed { background: #fff3e8; color: #ff8c1a; }
+.dot { width: 14rpx; height: 14rpx; border-radius: 50%; background: currentColor; margin-right: 12rpx; }
+.notice { margin: 16rpx 20rpx 0; padding: 16rpx 24rpx; background: #fffbe8; color: #b26a00; font-size: 24rpx; border-radius: 12rpx; }
+.cats { white-space: nowrap; margin: 20rpx 0 0; padding: 0 20rpx; box-sizing: border-box; }
+.cat { display: inline-block; padding: 12rpx 28rpx; margin-right: 16rpx; background: #fff; border-radius: 32rpx; font-size: 26rpx; color: #666; }
+.cat.active { background: #07c160; color: #fff; }
+.goods-list { padding-bottom: 40rpx; }
+.g { display: flex; }
+.g-img { width: 180rpx; height: 180rpx; border-radius: 12rpx; flex-shrink: 0; }
+.placeholder { background: #f0f0f0; color: #bbb; display: flex; align-items: center; justify-content: center; font-size: 24rpx; }
+.g-info { flex: 1; margin-left: 24rpx; display: flex; flex-direction: column; justify-content: space-between; }
+.g-name { font-size: 30rpx; font-weight: 500; }
+.g-bottom { margin-top: 12rpx; }
+.add-btn { width: 52rpx; height: 52rpx; border-radius: 50%; background: #07c160; color: #fff; text-align: center; line-height: 52rpx; font-size: 36rpx; }
+.add-btn.disabled { background: #ccc; }
+.admin-entry { position: fixed; right: 30rpx; bottom: 120rpx; width: 96rpx; height: 96rpx; border-radius: 50%; background: #333; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 26rpx; box-shadow: 0 4rpx 16rpx rgba(0,0,0,.2); }

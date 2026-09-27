@@ -1,0 +1,51 @@
+<view class="card">
+  <view class="sec-title">营业时间（即时单只在时段内开放，预订单可选时段内时间）</view>
+  <view wx:for="{{businessHours}}" wx:key="index" class="row period">
+    <picker mode="time" value="{{item.start}}" bindchange="pickTime" data-i="{{index}}" data-k="start">
+      <view class="time-box">{{item.start}}</view>
+    </picker>
+    <text style="margin: 0 16rpx;">至</text>
+    <picker mode="time" value="{{item.end}}" bindchange="pickTime" data-i="{{index}}" data-k="end">
+      <view class="time-box">{{item.end}}</view>
+    </picker>
+    <view class="del" bindtap="removePeriod" data-i="{{index}}">删除</view>
+  </view>
+  <view class="btn-plain mini" bindtap="addPeriod">+ 添加时段</view>
+</view>
+
+<view class="card">
+  <view class="sec-title">费用</view>
+  <view class="field"><text class="label">配送费(元)</text>
+    <input data-k="deliveryFeeYuan" type="digit" value="{{deliveryFeeYuan}}" bindinput="onInput" /></view>
+  <view class="field"><text class="label">起送金额(元)</text>
+    <input data-k="minOrderYuan" type="digit" value="{{minOrderYuan}}" bindinput="onInput" placeholder="0 为不限" /></view>
+</view>
+
+<view class="card">
+  <view class="sec-title">联系方式（顾客端可见）</view>
+  <view class="field"><text class="label">手机号</text>
+    <input data-k="contactPhone" type="number" value="{{contactPhone}}" bindinput="onInput" /></view>
+  <view class="field"><text class="label">微信号</text>
+    <input data-k="contactWechat" value="{{contactWechat}}" bindinput="onInput" /></view>
+  <view class="field" style="border-bottom: none;"><text class="label">店铺公告</text></view>
+  <textarea data-k="notice" value="{{notice}}" bindinput="onInput" placeholder="展示在首页顶部" />
+</view>
+
+<view class="card">
+  <view class="sec-title">收款模式</view>
+  <view class="between">
+    <view>
+      <view>在线支付（微信支付）</view>
+      <view class="muted">关闭则为货到付款；开通需个体工商户+商户号</view>
+    </view>
+    <switch checked="{{payMode === 'online'}}" bindchange="switchPayMode" color="#07c160" />
+  </view>
+  <view wx:if="{{payMode === 'online'}}" class="field" style="margin-top: 16rpx;">
+    <text class="label">商户号</text>
+    <input data-k="subMchId" value="{{subMchId}}" bindinput="onInput" placeholder="微信支付商户号 subMchId" />
+  </view>
+</view>
+
+<view class="footer">
+  <view class="btn-primary" bindtap="save">保存设置</view>
+</view>

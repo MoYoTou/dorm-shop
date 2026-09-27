@@ -1,0 +1,18 @@
+<view class="card">
+  <view class="title">退款原因</view>
+  <view class="quick">
+    <view class="chip" bindtap="quickReason" data-t="买多了，不想要了">买多了</view>
+    <view class="chip" bindtap="quickReason" data-t="等太久，不想要了">等太久</view>
+    <view class="chip" bindtap="quickReason" data-t="信息填错了">信息填错</view>
+  </view>
+  <textarea value="{{reason}}" placeholder="补充说明（必填）" bindinput="onInput" maxlength="200" />
+</view>
+
+<view class="card tip">
+  提交后订单将锁定为「退款审核中」，商家同意后金额原路退回；
+  商家拒绝会注明理由，订单继续正常配送。如有争议可在订单详情页直接联系商家。
+</view>
+
+<view class="footer">
+  <view class="btn-danger" bindtap="submit">提交退款申请</view>
+</view>

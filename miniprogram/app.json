@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/product-detail/product-detail",
+    "pages/cart/cart",
+    "pages/order-confirm/order-confirm",
+    "pages/order-list/order-list",
+    "pages/order-detail/order-detail",
+    "pages/refund-apply/refund-apply",
+    "pages/user/user"
+  ],
+  "subPackages": [
+    {
+      "root": "pages-admin",
+      "name": "admin",
+      "pages": [
+        "dashboard/dashboard",
+        "orders/orders",
+        "goods/goods",
+        "settings/settings"
+      ]
+    }
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#07c160",
+    "navigationBarTitleText": "宿舍小卖铺",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f6f6f6"
+  },
+  "tabBar": {
+    "color": "#888888",
+    "selectedColor": "#07c160",
+    "list": [
+      { "pagePath": "pages/index/index", "text": "首页" },
+      { "pagePath": "pages/cart/cart", "text": "购物车" },
+      { "pagePath": "pages/order-list/order-list", "text": "订单" },
+      { "pagePath": "pages/user/user", "text": "我的" }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

@@ -1,0 +1,31 @@
+<view class="banner {{open ? 'open' : 'closed'}}">
+  <text class="dot"></text>
+  <text>{{open ? '营业中' : '休息中，可下预订单'}} · 营业时间 {{hoursText || '待定'}}</text>
+</view>
+
+<view wx:if="{{settings && settings.notice}}" class="notice">公告：{{settings.notice}}</view>
+
+<scroll-view scroll-x class="cats" enhanced show-scrollbar="{{false}}">
+  <view class="cat {{activeCategory === '' ? 'active' : ''}}" bindtap="switchCategory" data-c="">全部</view>
+  <view wx:for="{{categories}}" wx:key="*this"
+        class="cat {{activeCategory === item ? 'active' : ''}}"
+        bindtap="switchCategory" data-c="{{item}}">{{item}}</view>
+</scroll-view>
+
+<view class="goods-list">
+  <view wx:for="{{goods}}" wx:key="_id" class="g card" bindtap="goDetail" data-g="{{item}}">
+    <image wx:if="{{item.image}}" class="g-img" src="{{item.image}}" mode="aspectFill" />
+    <view wx:else class="g-img placeholder">商品图</view>
+    <view class="g-info">
+      <view class="g-name">{{item.name}}</view>
+      <view class="muted">库存 {{item.stock}} 件 · 已售 {{item.soldCount || 0}}</view>
+      <view class="between g-bottom">
+        <text class="price">￥{{item.priceText}}</text>
+        <view class="add-btn {{item.stock <= 0 ? 'disabled' : ''}}" catchtap="addCart" data-g="{{item}}">＋</view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{!goods.length}}" class="empty">货架空空，等老板补货</view>
+</view>
+
+<view wx:if="{{isAdmin}}" class="admin-entry" bindtap="goAdmin">管理</view>
